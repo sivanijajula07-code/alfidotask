@@ -1,0 +1,86 @@
+import java.util.*;
+
+// Custom Exception
+class InvalidMarksException extends Exception {
+    public InvalidMarksException(String message) {
+        super(message);
+    }
+}
+
+public CollectionsDemo {
+
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        // ArrayList
+        ArrayList<String> studentList = new ArrayList<>();
+
+        // HashMap
+        HashMap<String, Integer> studentMarks = new HashMap<>();
+
+        // HashSet
+        HashSet<String> uniqueCourses = new HashSet<>();
+
+        try {
+
+            System.out.print("Enter Student Name: ");
+            String name = sc.nextLine();
+
+            System.out.print("Enter Marks: ");
+            int marks = sc.nextInt();
+            sc.nextLine();
+
+            // Custom Exception
+            if (marks < 0 || marks > 100) {
+                throw new InvalidMarksException("Marks should be between 0 and 100");
+            }
+
+            // Adding data
+            studentList.add(name);
+            studentMarks.put(name, marks);
+
+            // HashSet avoids duplicates
+            uniqueCourses.add("Java");
+            uniqueCourses.add("Python");
+            uniqueCourses.add("Java");
+
+            // Display ArrayList
+            System.out.println("\nStudent List:");
+            for (String s : studentList) {
+                System.out.println(s);
+            }
+
+            // Display HashMap
+            System.out.println("\nStudent Marks:");
+            for (String s : studentMarks.keySet()) {
+                System.out.println(s + " : " + studentMarks.get(s));
+            }
+
+            // Display HashSet
+            System.out.println("\nUnique Courses:");
+            for (String c : uniqueCourses) {
+                System.out.println(c);
+            }
+
+        }
+
+        catch (InputMismatchException e) {
+            System.out.println("Invalid Input! Please enter numbers only.");
+        }
+
+        catch (InvalidMarksException e) {
+            System.out.println("Custom Exception: " + e.getMessage());
+        }
+
+        catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+
+        finally {
+            System.out.println("\nProgram Finished Successfully.");
+        }
+
+        sc.close();
+    }
+}
